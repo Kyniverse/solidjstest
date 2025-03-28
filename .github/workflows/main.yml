@@ -12,21 +12,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+      - uses: actions/checkout@v4
 
-      - name: install
+      - name: Install
         run: npm i --legacy-peer-deps
 
-      - name: build
+      - name: Build
         run: npm run build
         env:
           BASE_PATH: /solidjstest/
 
-      - name: create .nojekyll
+      - name: Create .nojekyll
         run: touch .output/public/.nojekyll
 
-      - name: deploy pages
-        uses: JamesIves/github-pages-deploy-action@latest
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: .output/public
